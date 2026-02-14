@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Компилятор подписок 3X-UI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="loginCard" class="card auth-card">
+        <h1>Компилятор подписок 3X-UI</h1>
+        <p class="muted">Простая локальная авторизация для доступа к интерфейсу.</p>
+        <form id="loginForm" class="stack">
+          <label>
+            Логин
+            <input id="username" type="text" autocomplete="username" placeholder="admin" required />
+          </label>
+          <label>
+            Пароль
+            <input id="password" type="password" autocomplete="current-password" placeholder="••••••" required />
+          </label>
+          <button type="submit">Войти</button>
+          <p id="loginError" class="error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="dashboard" class="card dashboard hidden" aria-hidden="true">
+        <header class="dashboard-header">
+          <div>
+            <h2>Панель сборки подписок</h2>
+            <p class="muted">На основе идеи nginx-3x-ui-subscription-proxy.</p>
+          </div>
+          <button id="logoutBtn" class="ghost">Выйти</button>
+        </header>
+
+        <form id="compilerForm" class="grid">
+          <label>
+            URL панели 3X-UI
+            <input id="panelUrl" type="url" placeholder="https://panel.example.com" required />
+          </label>
+          <label>
+            Inbound ID
+            <input id="inboundId" type="number" min="1" placeholder="1" required />
+          </label>
+          <label>
+            Имя клиента
+            <input id="clientEmail" type="text" placeholder="user@local" required />
+          </label>
+          <label>
+            API токен
+            <input id="apiToken" type="password" placeholder="token" required />
+          </label>
+          <label>
+            Локальный домен прокси
+            <input id="proxyHost" type="text" placeholder="sub.example.com" required />
+          </label>
+          <label>
+            Путь подписки
+            <input id="subscriptionPath" type="text" placeholder="/sub/user" value="/sub/user" required />
+          </label>
+          <button type="submit" class="full">Сгенерировать конфиг</button>
+        </form>
+
+        <section class="result stack">
+          <h3>Результат одиночной подписки</h3>
+          <label>
+            Скомпилированная ссылка подписки
+            <input id="subscriptionUrl" type="text" readonly />
+          </label>
+          <label>
+            Фрагмент NGINX
+            <textarea id="nginxSnippet" rows="10" readonly></textarea>
+          </label>
+        </section>
+
+        <section class="result stack merge-block">
+          <div>
+            <h3>Объединение нескольких подписок в одну</h3>
+            <p class="muted">Добавьте несколько URL подписок или вставьте их raw/base64 содержимое — получите единый объединённый результат.</p>
+          </div>
+
+          <div id="mergeList" class="stack"></div>
+
+          <div class="inline-actions">
+            <button id="addSourceBtn" type="button">+ Добавить источник</button>
+            <button id="mergeBtn" type="button">Объединить подписки</button>
+          </div>
+
+          <p id="mergeError" class="error" role="alert" aria-live="polite"></p>
+
+          <label>
+            Объединённый список (raw)
+            <textarea id="mergedRaw" rows="8" readonly></textarea>
+          </label>
+          <label>
+            Объединённая подписка (base64)
+            <textarea id="mergedBase64" rows="6" readonly></textarea>
+          </label>
+        </section>
+      </section>
+    </main>
+
+    <template id="sourceTemplate">
+      <div class="source-item">
+        <label>
+          Источник подписки
+          <textarea class="source-input" rows="3" placeholder="https://example.com/sub или raw/base64 контент"></textarea>
+        </label>
+        <button type="button" class="ghost remove-source">Удалить</button>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
