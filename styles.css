@@ -1,0 +1,142 @@
+:root {
+  --bg: #1b1b1b;
+  --card: #252525;
+  --input: #303030;
+  --border: #4a4a4a;
+  --text: #f5f5f5;
+  --muted: #b8b8b8;
+  --danger: #ff8d8d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(980px, 100%);
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 3%), 0 8px 30px rgb(0 0 0 / 35%);
+}
+
+.auth-card {
+  max-width: 420px;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--input);
+  padding: 10px 12px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  cursor: pointer;
+  background: #3a3a3a;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #464646;
+}
+
+button.ghost {
+  background: transparent;
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 18px 0 26px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.result {
+  margin-top: 10px;
+}
+
+.merge-block {
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.source-item {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  min-height: 1.25em;
+}
+
+.hidden {
+  display: none;
+}
